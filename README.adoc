@@ -1,6 +1,9 @@
 # zk-locker
 component locking with ZK
 
+locking object at the database level is hard... + 
+so here is an alternative locking mechanism on the GUI-side, including auto-unlock
+
 ## Usage
 
 [source, xml]
