@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language-addon>
+    <addon-name>locking</addon-name>
+    <language-name>xul/html</language-name>
+     <component>
+        <component-name>lockholder</component-name>
+        <extends>div</extends>
+        <component-class>be.enyed.locker.component.LockHolderComponent</component-class>
+    </component>
+    <component>
+        <component-name>lock</component-name>
+        <extends>div</extends>
+        <component-class>be.enyed.locker.component.LockTriggerComponent</component-class>
+    </component>
+    <component>
+        <component-name>lockindicator</component-name>
+        <extends>a</extends>
+        <component-class>be.enyed.locker.component.LockIndicatorComponent</component-class>
+    </component>
+</language-addon>

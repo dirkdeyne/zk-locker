@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.zkoss.org/2005/zul" xmlns:h="http://www.w3.org/1999/xhtml"
+	xsi:schemaLocation="
+      http://www.zkoss.org/2005/zul https://www.zkoss.org/2005/zul/zul.xsd
+      http://www.w3.org/1999/xhtml https://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd">
+	
+	<div>
+		<zscript>
+			String message = "Hallo world";
+		</zscript>
+		
+		<lockholder lockOn="${message}"> 
+			<hlayout><label value="${message}"/><space/><lockindicator/></hlayout> 
+			<hlayout><label value="Editing this textbox will NOT trigger lock"/><textbox value="${message}"/></hlayout>	
+			<lock>
+				<hlayout><label value="Editing this textbox will trigger lock"/><textbox value="${message}"/></hlayout>	
+			</lock>
+			<hlayout><label value="Editing this textbox will NOT trigger lock"/><textbox value="${message}"/></hlayout>	
+		</lockholder>
+	</div>
+</zk>      

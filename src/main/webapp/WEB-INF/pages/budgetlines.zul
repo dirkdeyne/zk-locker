@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	xsi:schemaLocation="
+      http://www.zkoss.org/2005/zul https://www.zkoss.org/2005/zul/zul.xsd
+      http://www.w3.org/1999/xhtml https://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd">
+
+	<style src="/style/budget.css" />
+	<div sclass="container">
+		<div
+			viewModel="@id('vm')  @init('be.enyed.example.viewmodel.BudgetLinesViewmodel')"
+			width="75%">
+			<vlayout sclass="header">
+				<label sclass="big" value="Overview available budgetlines." />
+				<label sclass="small"
+					value='@load(String.format("Hi, %s! I know your just a Mock, but welcome anyway...", vm.user))' />
+			</vlayout>
+			<space />
+			<listbox model="@load(vm.lines)" selectedItem="@bind(vm.line)">
+				<listhead>
+					<!-- <listheader label="id" /> -->
+					<listheader label="name" />
+					<listheader label="amount (euro)" />
+					<listheader label="remaining (euro)" />
+				</listhead>
+				<template name="model" var="line">
+					<listitem>
+						<!-- <listcell label="@load(line.id)" /> -->
+						<listcell label="@load(line.name)" />
+						<listcell label="@load(line.amount)" />
+						<listcell label="@load(line.remainingAmount)" />
+					</listitem>
+				</template>
+			</listbox>
+
+			<vlayout>
+				<space />
+				<vlayout sclass="header">
+					<label sclass="big"
+						value='@load(String.format("Details budgetline %s.", vm.line.name))' />
+					<label sclass="small"
+						value='@load(String.format("you are able to add expenses with a cost from 1 euro  - %s euro.", vm.line.remainingAmount))' />
+				</vlayout>
+				<space />
+				<listbox model="@load(vm.line.expenses)">
+					<listhead>
+						<listheader label="description" />
+						<listheader label="cost" />
+					</listhead>
+					<template name="model" var="expense">
+						<listitem>
+							<listcell label="@load(expense.description)" />
+							<listcell label="@load(expense.cost)" />
+						</listitem>
+					</template>
+				</listbox>
+				<space />
+				<lockholder lockOn="@bind(vm.line)" owner="@load(vm.user)"
+					onUnlock="@command('reload')" tick="2500">
+					<vlayout sclass="form" width="420px" spacing="15px">
+
+						<hlayout>
+							<label style="color: grey;" value="please reduce the costs to a minimum :-) " />
+							<space />
+							<lockindicator />
+						</hlayout>
+						<lock>
+							<vlayout>
+								<hlayout hflex="3">
+									<label value="description" hflex="1" />
+									<textbox value="@bind(vm.description)" width="200px" />
+								</hlayout>
+
+								<hlayout>
+									<label value="cost (euro)" hflex="1" />
+									<longbox value="@bind(vm.cost)" width="200px" />
+								</hlayout>
+							</vlayout>
+						</lock>
+
+						<hlayout>
+							<space width="150px" />
+							<lock id="3">
+								<button label="save" onClick="@command('addExpenses')" />
+							</lock>
+						</hlayout>
+
+					</vlayout>
+				</lockholder>
+			</vlayout>
+
+		</div>
+	</div>
+</zk>

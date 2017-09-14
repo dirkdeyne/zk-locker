@@ -1,0 +1,21 @@
+
+.container{
+	margin: 10px auto auto 50px;
+	padding: 5%;
+}
+
+a {
+	text-decoration: none;
+}
+
+.big {
+  color: #22f;
+  font-size:1.2em;
+  font-weight: bold;
+}
+
+.small {
+  color: #888;
+  font-size:.8em;
+  font-style: italic;
+}
