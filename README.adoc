@@ -1,0 +1,87 @@
+# zk-locker
+component locking with ZK
+
+## Usage
+
+[source, xml]
+----
+<lockholder lockOn="@bind(vm.line)" owner="@load(vm.user)" onUnlock="@command('reload')" tick="2500">
+ <vlayout sclass="form" width="420px" spacing="15px">
+
+  <hlayout>
+   <label style="color: grey;" value="please reduce the costs to a minimum :-) " />
+   <space />
+   <lockindicator />
+  </hlayout>
+
+  <lock>
+   <vlayout>
+    <hlayout hflex="3">
+     <label value="description" hflex="1" />
+     <textbox value="@bind(vm.description)" width="200px" />
+    </hlayout>
+
+    <hlayout>
+     <label value="cost (euro)" hflex="1" />
+     <longbox value="@bind(vm.cost)" width="200px" />
+    </hlayout>
+   </vlayout>
+  </lock>
+
+  <hlayout>
+    <space width="150px" />
+    <lock>
+     <button label="save" onClick="@command('addExpenses')" />
+    </lock>
+   </hlayout>
+
+ </vlayout>
+</lockholder>
+----
+
+## lockholder
+div-tag that binds your objects to the viewmodel and congfigures the lock-holder +
+all the containing childeren will trigger the lock-mechanism when they emit an event (like onChange, onClick, onCheck, ...) 
+
+### usage
+[source, xml]
+----
+<lockholder lockOn="@bind(vm.line)" owner="@load(vm.user)" onUnlock="@command('reload')" tick="2500">
+----
+
+- *lockOn* `^required^` the object that will be locked
+- *owner* `^optional^` the object that will own the lock, _default_: `*UUID.randomUUID();*`
+- *onUnlock* `^optional^` action when object is unlocked
+- *tick* `^optional^` miliseconds timer to refresh, _default_: `0 _(no timer)_`
+- *duration* `^optional^` seconds until auto-unluck, _default_: `120`
+
+## lock
+div-tag that surrounds the tags that needs to the locked
+
+### usage
+[source, xml]
+----
+  <lock>
+   <vlayout>
+    <hlayout hflex="3">
+     <label value="description" hflex="1" />
+     <textbox value="@bind(vm.description)" width="200px" />
+    </hlayout>
+
+    <hlayout>
+     <label value="cost (euro)" hflex="1" />
+     <longbox value="@bind(vm.cost)" width="200px" />
+    </hlayout>
+   </vlayout>
+  </lock>
+----
+
+### lockindicator _^optional^_
+A-tag lock-image that indicates the lock-state.
+
+# Run the example
+just run the `be.enyed.example.LockerExampleApplication` example app in your favorite IDE or run it from maven +
+  _ref:_ https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-running-your-application.html
+
+open page `localhost:8080` in your browser and open a *second page* to see the locking actually work +
+and provide an discription and a cost for an expense...
