@@ -113,7 +113,6 @@ public class LockHolderComponent extends Div implements AfterCompose, BeforeComp
 		if(!locked.equals(current)){
 			current = locked;
 			lockComponents.forEach((comp) -> Events.postEvent(current.status(), comp, locked));
-			System.err.println(locked);
 		} 
 	}
 
