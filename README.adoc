@@ -84,7 +84,10 @@ A-tag lock-image that indicates the lock-state.
 
 # Run the example
 just run the `be.enyed.example.LockerExampleApplication` example app in your favorite IDE or run it from maven +
-  _ref:_ https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-running-your-application.html
+
+`mvn spring-boot:run` 
+
+_ref:_ https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-running-your-application.html
 
 open page `localhost:8080` in your browser and open a *second page* to see the locking actually work +
 and provide an discription and a cost for an expense...
