@@ -39,9 +39,6 @@ public class BudgetLinesViewmodel {
 	
 	@Command
 	public void reload() {
-		
-		System.err.println("RELOAD");
-		
 		lines.clear();
 		lines.addAll(store.getAllBudgetLines());
 		//line ?
